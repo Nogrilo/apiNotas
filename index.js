@@ -59,5 +59,3 @@ app.get('/editar/:nome', (req, res) => {
 const PORT = 3000;
 app.listen(3000);
 console.log ("Servidor rodando na porta", 3000)
-
-console.log("Teste")
