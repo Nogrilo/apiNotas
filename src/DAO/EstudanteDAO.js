@@ -27,7 +27,7 @@ class EstudanteDAO {
             const n2 = Number(objetoEstudante.getNota2());
             const n3 = Number(objetoEstudante.getNota3());
 
-            const media = (n1 + n2 + n3) / 3;
+            const media = Number(((n1 + n2 + n3) / 3).toFixed(1));
 
             const documento = new EstudanteDAO.EstudanteModel({
                 nome: objetoEstudante.getNome(),
@@ -69,7 +69,7 @@ class EstudanteDAO {
             const n2 = Number(objetoEstudante.getNota2());
             const n3 = Number(objetoEstudante.getNota3());
 
-            const media = (n1 + n2 + n3) / 3;
+            const media = Number(((n1 + n2 + n3) / 3).toFixed(1));
 
             const dadoatualizado = {
                 nome: nome_,
