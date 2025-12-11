@@ -8,7 +8,8 @@ class EstudanteDAO {
         nome: { type: String, required: true },
         nota1: { type: Number, required: true },
         nota2: { type: Number, required: true },
-        nota3: { type: Number, required: true }
+        nota3: { type: Number, required: true },
+        media: { type: Number, required: false}
     })
 
     static EstudanteModel = mongoose.model('Estudante', EstudanteDAO.EstudanteSchema)
@@ -20,12 +21,20 @@ class EstudanteDAO {
             objetoEstudante.setNota1(req.body.nota1);
             objetoEstudante.setNota2(req.body.nota2);
             objetoEstudante.setNota3(req.body.nota3);
+            
+            // Pegar as notas
+            const n1 = Number(objetoEstudante.getNota1());
+            const n2 = Number(objetoEstudante.getNota2());
+            const n3 = Number(objetoEstudante.getNota3());
+
+            const media = (n1 + n2 + n3) / 3;
 
             const documento = new EstudanteDAO.EstudanteModel({
                 nome: objetoEstudante.getNome(),
-                nota1: objetoEstudante.getNota1(),
-                nota2: objetoEstudante.getNota2(),
-                nota3: objetoEstudante.getNota3()
+                nota1: n1,
+                nota2: n2,
+                nota3: n3,
+                media: media
             })
 
             const resultado = await documento.save();
@@ -57,9 +66,9 @@ class EstudanteDAO {
 
             const dadoatualizado = {
                 nome: nome_,
-                nota1:objetoEstudante.getnota1(),
-                nota2:objetoEstudante.getnota2(),
-                nota3:objetoEstudante.getnota3()
+                nota1:objetoEstudante.getNota1(),
+                nota2:objetoEstudante.getNota2(),
+                nota3:objetoEstudante.getNota3()
             }
 
             const resultado = await EstudanteDAO.EstudanteModel.findOneAndUpdate(
