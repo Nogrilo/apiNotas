@@ -21,7 +21,7 @@ fetch('/api/notas/listar')
                         </a>
                     </td>
                     <td>
-                        <form action="/api/notas/excluir/${estudante.nome}" method="DELETE" onsubmit="return confirm('Confirmar exclusão de ${estudante.nome}?');" style="display:inline;">
+                        <form action="/api/notas/excluir/${estudante.nome}" method="POST" onsubmit="return confirm('Confirmar exclusão de ${estudante.nome}?');" style="display:inline;">
                             <input type="hidden" name="_method" value="DELETE">
                             
                             <button type="submit" style="border: none; background: none; padding: 0; cursor: pointer;">

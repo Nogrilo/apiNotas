@@ -64,11 +64,19 @@ class EstudanteDAO {
             objetoEstudante.setNota2(req.body.nota2),
             objetoEstudante.setNota3(req.body.nota3)
 
+            // Pegar as notas
+            const n1 = Number(objetoEstudante.getNota1());
+            const n2 = Number(objetoEstudante.getNota2());
+            const n3 = Number(objetoEstudante.getNota3());
+
+            const media = (n1 + n2 + n3) / 3;
+
             const dadoatualizado = {
                 nome: nome_,
-                nota1:objetoEstudante.getNota1(),
-                nota2:objetoEstudante.getNota2(),
-                nota3:objetoEstudante.getNota3()
+                nota1: n1,
+                nota2: n2,
+                nota3: n3,
+                media: media
             }
 
             const resultado = await EstudanteDAO.EstudanteModel.findOneAndUpdate(
@@ -88,7 +96,7 @@ class EstudanteDAO {
     static async excluir(req, res) {
         try{
             const nome_ = req.params.nome
-            const resultado = await EstudanteDAO.EstudanteModel.findOneAndDelete({nome_});
+            const resultado = await EstudanteDAO.EstudanteModel.findOneAndDelete({ nome: nome_});
             if(resultado == null){
                 return res.status(404).json({error: "Estudante nao encontrado"})
             }
